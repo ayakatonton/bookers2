@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "layouts/userinfo", user: @user %>
+      <%= render 'layouts/newbook', book: @newbook %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h1>Book detail</h1>
+    <table class="table">
+      <tbody>
+          <tr>
+            <td>
+              <%= image_tag @book.user.get_profile_image(80,80) %>
+              <br>
+              <%= link_to @book.user.name, user_path(@book.user) %>
+            </td>
+            <td><%= link_to @book.title, book_path(@book)%></td>
+            <td>
+              <%= @book.body %> 
+            </td>
+            <% if current_user == @book.user %>
+            <td>
+              <%= link_to "Edit", edit_book_path(@book) , class:"btn btn-btn btn-success" %>
+            </td>
+            <td> 
+              <%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に消しますか？"}, class:"btn btn-danger" %>
+            </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+          
