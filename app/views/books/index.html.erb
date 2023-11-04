@@ -1,4 +1,4 @@
-<div class="container">
+<div class='container px-5 px-sm-0'>
   <div class="row">
     <div class="col-md-3">
       <%= render 'layouts/userinfo', user: current_user %>
@@ -26,7 +26,7 @@
             </td>
             <td><%= link_to book.title, book_path(book)%></td>
             <td><%= book.body %> </td>
-            <td></td>
+            <td><%= render "favorites/fav", book:book %></td>
           </tr>
           <% end %>
         </tbody>

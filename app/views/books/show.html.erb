@@ -19,6 +19,7 @@
             <td>
               <%= @book.body %> 
             </td>
+            <td><%= render "favorites/fav", book:@book %></td>
             <% if current_user == @book.user %>
             <td>
               <%= link_to "Edit", edit_book_path(@book) , class:"btn btn-btn btn-success" %>
