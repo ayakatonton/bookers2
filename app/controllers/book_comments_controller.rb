@@ -12,7 +12,7 @@ class BookCommentsController < ApplicationController
     current_user.book_comments.find(params[:id]).destroy!
     flash[:notice] = 'コメントを削除しました'
     redirect_to("/books/#{params[:book_id]}")
- end
+  end
 
   private
 

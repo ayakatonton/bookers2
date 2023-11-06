@@ -7,10 +7,11 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   has_many :books, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :followers, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :followeds, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :following_users, through: :followers, source: :followed
-  has_many :follower_users, through: :followeds, source: :follower
+ 
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followings, through: :relationships, source: :followed
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :reverse_of_relationships, source: :follower
 
   validates :name, uniqueness: true, presence: true, length: { minimum: 2, maximum: 20 }
   validates :introduction, length: { maximum: 50 }
@@ -24,15 +25,15 @@ class User < ApplicationRecord
   end
 
   def follow(user_id)
-    followers.create(followed_id: user_id)
+    relationships.create(followed_id: user_id)
   end
   
   
   def unfollow(user_id)
-    followers.find_by(followed_id: user_id).destroy
+    relationships.find_by(followed_id: user_id).destroy
   end
   
   def following?(user)
-    following_users.include?(user)
+    followings.include?(user)
   end	 
 end
