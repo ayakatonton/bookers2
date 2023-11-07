@@ -1,0 +1,56 @@
+<div class='container px-5 px-sm-0'>
+  <div class="row">
+    <div class="col-md-8 offset-md-2"> 
+      <% if @range == "User" %>
+      <h2>Users search for "<%= @word %>"</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">image</th>
+              <th scope="col">name</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>                                                       
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= image_tag user.get_profile_image(80, 80) %></td>
+                <td><%= link_to user.name, user_path(user) %></td>
+                <td><i class="fa-solid fa-person-rays"></i><%= user.followings.count %></td>
+                <td><i class="fa-solid fa-street-view"></i> <%= user.followers.count %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <h2>Books search for "<%= @word %>"</h2>
+        <table class="table">
+          <thead>
+              <tr>
+                <th scope="col">image</th>
+                <th scope="col">title</th>
+                <th scope="col">opinion</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+          </thead>
+        <tbody>
+        <% @books.each do |book| %>
+          <tr>
+            <td>
+              <%= image_tag book.user.get_profile_image(80,80) %>
+            </td>
+            <td><%= link_to book.title, book_path(book)%></td>
+            <td><%= book.body %></td>
+            <td><i class="fa-solid fa-person-rays"></i><%= book.user.followings.count %></td>
+            <td><i class="fa-solid fa-street-view"></i> <%= book.user.followers.count %></td>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
