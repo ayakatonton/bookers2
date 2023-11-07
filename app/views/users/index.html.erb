@@ -6,14 +6,20 @@
       <%= render 'layouts/newbook', book: @book %>
     </div>
     <div class="col-md-8 offset-md-1"> 
-      <h2>Users</h2>
+     <div class="row">   
+        <h2>Users</h2>
+        <div class="offset-md-4">
+          <%= render 'searches/search' %>
+        </div>
+      </div>
       <table class="table">
         <thead>
           <tr>
             <th scope="col">image</th>
             <th scope="col">name</th>
             <th scope="col"></th>
-            <th scope="col"></th>
+            <th scope="col">following</th>
+            <th scope="col">followers</th>
           </tr>
         </thead>
       <tbody>

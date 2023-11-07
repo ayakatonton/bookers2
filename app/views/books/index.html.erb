@@ -6,8 +6,12 @@
     </div>
 
     <div class="col-md-8 offset-md-1"> 
-      <%= render 'searches/search' %>
-      <h2>Books</h2>
+      <div class="row">   
+        <h2>Books</h2>
+        <div class="offset-md-4">
+          <%= render 'searches/search' %>
+        </div>
+      </div>
       <table class="table">
         <thead>
             <tr>
@@ -27,7 +31,8 @@
             </td>
             <td><%= link_to book.title, book_path(book)%></td>
             <td><%= book.body %> </td>
-            <td><%= render "favorites/fav", book:book %></td>
+            <!--いいねボタン-->
+            <td id="favorte_button_<%= book.id %>"><%= render "favorites/fav", book:book %></td>
             <td><%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %></td>
           </tr>
           <% end %>

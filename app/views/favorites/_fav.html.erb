@@ -1,10 +1,10 @@
 <% if book.favorited_by?(current_user) %>
-  <%= link_to book_favorites_path(book.id), method: :delete, class: "d-inline-flex align-items-center text-decoration-none" do %>
+  <%= link_to book_favorites_path(book.id), method: :delete, remote: true, class: "d-inline-flex align-items-center text-decoration-none" do %>
     ♥<%= book.favorites.count %> 
   <% end %>
 <% else %>
-  <%= link_to book_favorites_path(book.id), method: :post, class: "d-inline-flex align-items-center text-decoration-none" do %>
-     ♡<%= book.favorites.count %> 
+  <%= link_to book_favorites_path(book.id), method: :post, remote: true, class: "d-inline-flex align-items-center text-decoration-none" do %>
+    ♡<%= book.favorites.count %> 
   <% end %>
 <% end %>
 
