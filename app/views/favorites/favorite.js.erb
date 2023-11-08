@@ -1,1 +1,1 @@
-$('#favorte_button_<%= @book.id %>').html('<%= j render "favorites/fav", book:@book %>');
+$('#favorite_button_<%= @book.id %>').html('<%= j(render "favorites/fav", book:@book) %>');
